@@ -19,6 +19,11 @@ LWIPINC=-I$(LWIPDIR)/src/include -I$(LWIPDIR)/src/include/ipv4/ -I$(LWIPBASE)/co
 #PONY=$(CDIR)/cidl/
 PONY=/bin/echo
 
+LUABASE=$(CDIR)/lib/lua
+LUADIR=$(LUABASE)/lua-5.2.1
+LUAOBJ=$(LUABASE)/cos/lua_lang.o
+LUAINC=-I$(LUADIR)/src -I$(LUABASE)/cos/include
+
 INC_PATH=-I./ -I$(CDIR)/include/ -I$(CDIR)/interface/
 # FIXME: dietlibc is now compiled with fno merge constants which is
 # probably ballooning its size.  Fix this need for no merge constants

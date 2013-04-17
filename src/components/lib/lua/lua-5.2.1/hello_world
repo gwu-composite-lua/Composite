@@ -1,0 +1,2 @@
+#!/home/cos/lua-5.2.1/src/lua
+print("Hello World")
