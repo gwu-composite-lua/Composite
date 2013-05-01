@@ -28,26 +28,30 @@ cos_init(void)
 		// it out here
 		printc("error %s", lua_tostring(L, -1));
 	}
-	 lua_getglobal(L, "foo");
-	lua_pushnumber(L, 40);
+	 lua_getglobal(L, "fib");
+	lua_pushnumber(L,20);
 	 lua_pcall(L,1,1,0);
 	int new_num = (int)lua_tonumber(L, -1);
-	printc("Lua from foo.lua %d\n num", new_num);
+	printc("Lua from fib.lua:%d\n", new_num);
+	
+	int i = 0;	
+	for (i = 0; i < 10; i++) {
 
+		lua_getglobal(L,"linked_list");
+		lua_pushnumber(L,40000);
+		lua_pcall(L,1,0,0);
+		char *str = lua_tostring(L,-1);
+		printc("Lua string is %s\n", str); 
+		printc("garbage %d\n", lua_gc(L, LUA_GCCOUNT,0));
+	
+		lua_getglobal(L,"clear_list");
+		lua_pcall(L,0,0,0);
+		// lua_gc(L, LUA_GCCOLLECT,9);
+		printc("garbage %d\n", lua_gc(L, LUA_GCCOUNT,0));
+	}
 	// Closes lua
 	lua_close(L);
-	printc("END OF LUA FILE\n");
+	printc("End of Lua file\n");
 
 	return;
 }
-
-int map_create(lua_State *lua)
-{
-	printc("mape create");
-}
-
-int map_slice(lua_State *lua)
-{
-	printc("map slice");
-}
-
